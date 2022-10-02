@@ -1,0 +1,2 @@
+Config class handle float + int not just int
+Send config data to shaders via uniforms
