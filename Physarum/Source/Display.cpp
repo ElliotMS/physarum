@@ -43,16 +43,24 @@ void Display::InitScreen(int textureWidth, int textureHeight)
         1, 2, 3
     };
 
+    // Create and bind vertex buffer object
     unsigned int VBO;
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    // EXCLUSIVLY ON NVIDIA GPU (MX250) | GL CALLBACK: ** GL ERROR ** type = 0x824c, severity = 0x9146, message = Error has been generated. GL error GL_INVALID_OPERATION in (null): (ID: 173538523) Generic error
+
+    // Create and bind vertex array object
+    unsigned int VAO;
+    glGenVertexArrays(1, &VAO);
+    glBindVertexArray(VAO);
+
+    // Define how the VBO data should be interpreted
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0); // quadCoords
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float))); // texCoords
     glEnableVertexAttribArray(1);
 
+    // Create and bind element buffer object
     unsigned int EBO;
     glGenBuffers(1, &EBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
