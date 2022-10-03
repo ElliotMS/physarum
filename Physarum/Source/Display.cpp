@@ -47,6 +47,7 @@ void Display::InitScreen(int textureWidth, int textureHeight)
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    // EXCLUSIVLY ON NVIDIA GPU (MX250) | GL CALLBACK: ** GL ERROR ** type = 0x824c, severity = 0x9146, message = Error has been generated. GL error GL_INVALID_OPERATION in (null): (ID: 173538523) Generic error
     glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0); // quadCoords
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float))); // texCoords
