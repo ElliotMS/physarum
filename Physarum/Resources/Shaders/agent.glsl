@@ -32,7 +32,7 @@ void main()
     {
         newPos.x = agent.x - 0.01; // better checking to not move out of bounds
         newPos.y = agent.y - 0.01; // 
-        agents[ID].angle = random(vec2(agent.x, agent.y)) * 2 * 3.1415; // Need better seed
+        agents[ID].angle = random(vec2(agent.x + ID, agent.y)) * 2 * 3.1415; // Need better seed
     }
 
     imageStore(imgOutput, ivec2(agent.x, agent.y), value);
