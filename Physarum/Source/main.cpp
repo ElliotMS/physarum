@@ -19,7 +19,7 @@ int main(void)
     if (!glfwInit()) 
         return -1;
 
-    Display display(DISPLAY_WIDTH, DISPLAY_HEIGHT, "Simulation"); // Create window and context
+    Display display("Simulation"); // Create window and context
 
     // Initialize GLEW
     if (glewInit() != GLEW_OK) { 
@@ -31,23 +31,23 @@ int main(void)
 
     // Load and compile shaders 
     Shader renderShader(
-        "./Resources/Shaders/vertex.glsl",
-        "./Resources/Shaders/fragment.glsl"
+        "./Shaders/vertex.glsl",
+        "./Shaders/fragment.glsl"
     );
 
     Shader agentShader(
-        "./Resources/Shaders/agent.glsl"
+        "./Shaders/agent.glsl"
     );
 
     Shader decayShader(
-        "./Resources/Shaders/decay.glsl"
+        "./Shaders/decay.glsl"
     );
 
     Shader diffuseShader(
-        "./Resources/Shaders/diffuse.glsl"
+        "./Shaders/diffuse.glsl"
     );
 
-    display.InitScreen(TEXTURE_WIDTH, TEXTURE_HEIGHT); // Creates full screen quad & trailmap texture
+    display.InitScreen(); // Creates full screen quad & trailmap texture
     Agent::Init(); // Intialize agents
 
     while (!glfwWindowShouldClose(display.window))

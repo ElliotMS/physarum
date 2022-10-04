@@ -8,7 +8,7 @@ void main()
 {
     ivec2 pixelPos = ivec2(gl_GlobalInvocationID.xy);
     vec4 currentValue = imageLoad(trailMap, pixelPos);
-    vec4 newValue = currentValue - vec4(0.001, 0.001, 0.001, 0.0);
+    vec4 decayedValue = currentValue - vec4(0.001, 0.001, 0.001, 0.0);
     
-    imageStore(trailMap, pixelPos, newValue);
+    imageStore(trailMap, pixelPos, decayedValue);
 }

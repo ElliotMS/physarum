@@ -1,19 +1,19 @@
 #include "Display.h"
+#include "Config.h"
 #include <iostream>
+
 
 static void WindowResizeCallback(GLFWwindow * window, int width, int height)
 {
     glViewport(0, 0, width, height);
 }
 
-Display::Display(int width, int height, const char* title)
+Display::Display(const char* title)
 {
-    windowWidth = width;
-    windowHeight = height;
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     //glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
-    window = glfwCreateWindow(windowWidth, windowHeight, title, NULL, NULL);
+    window = glfwCreateWindow(DISPLAY_WIDTH, DISPLAY_HEIGHT, title, NULL, NULL);
     
     if (!window)
     {
@@ -22,12 +22,12 @@ Display::Display(int width, int height, const char* title)
     }
     
     glfwMakeContextCurrent(window);
-    glViewport(0, 0, windowWidth, windowHeight);
+    glViewport(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
     glfwSetWindowSizeCallback(window, WindowResizeCallback);
     glfwSwapInterval(1);
 }
 
-void Display::InitScreen(int textureWidth, int textureHeight)
+void Display::InitScreen()
 {
     // Quad //
     float vertices[] = {
@@ -55,9 +55,9 @@ void Display::InitScreen(int textureWidth, int textureHeight)
     glBindVertexArray(VAO);
 
     // Define how the VBO data should be interpreted
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0); // quadCoords
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);                   // Positions
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float))); // texCoords
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float))); // Texture coords
     glEnableVertexAttribArray(1);
 
     // Create and bind element buffer object
@@ -67,13 +67,13 @@ void Display::InitScreen(int textureWidth, int textureHeight)
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // Texture //
-    glGenTextures(1, &screenTexture);
-    glBindTexture(GL_TEXTURE_2D, screenTexture);
+    glGenTextures(1, &trailMap);
+    glBindTexture(GL_TEXTURE_2D, trailMap);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, textureWidth, textureHeight, 0, GL_RGBA, GL_FLOAT, NULL);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, TEXTURE_WIDTH, TEXTURE_HEIGHT, 0, GL_RGBA, GL_FLOAT, NULL);
 
-    glBindImageTexture(0, screenTexture, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA32F);
+    glBindImageTexture(0, trailMap, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA32F);
 }
 
 void Display::Update()

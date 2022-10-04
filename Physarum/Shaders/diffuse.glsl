@@ -11,8 +11,8 @@ void main()
 
     for (int i = -1; i <= 1; i++) {                  // Loop X offsets
         for (int j = -1; j <= 1; j++) {              // Loop Y offsets
-            ivec2 pos = pixelPos + ivec2(i, j);
-            sum += imageLoad(trailMap, pos);
+            ivec2 currentPos = pixelPos + ivec2(i, j);
+            sum += imageLoad(trailMap, currentPos);
         }
     }
     

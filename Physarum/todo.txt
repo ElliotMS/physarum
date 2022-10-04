@@ -2,3 +2,4 @@
 - Send config data to shaders via uniforms
 - Consistent frame rate
 - Sense algorithm
+- Out of bounds check for diffuse shader (to prevent pixels on edges from decaying faster)
