@@ -13,8 +13,8 @@ namespace Agent
 		
 		for (int i = 0; i < AGENT_COUNT * 3; i += 3)
 		{
-		    agentData[i+0] = TEXTURE_WIDTH / 2;
-		    agentData[i+1] = TEXTURE_HEIGHT / 2;
+		    agentData[i+0] = (float(rand()) / float(RAND_MAX)) * TEXTURE_WIDTH;
+		    agentData[i+1] = (float(rand()) / float(RAND_MAX)) * TEXTURE_HEIGHT;
 		    agentData[i+2] = (float(rand()) / float(RAND_MAX)) * (2 * 3.14159265359);
 		}
 		

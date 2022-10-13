@@ -54,6 +54,10 @@ int main(void)
     glProgramUniform1i(agentShader.program, glGetUniformLocation(agentShader.program, "width"), TEXTURE_WIDTH);
     glProgramUniform1i(agentShader.program, glGetUniformLocation(agentShader.program, "height"), TEXTURE_HEIGHT);
     glProgramUniform1i(agentShader.program, glGetUniformLocation(agentShader.program, "stepSize"), STEP_SIZE);
+    glProgramUniform1f(agentShader.program, glGetUniformLocation(agentShader.program, "sensorAngle"), float(SENSOR_ANGLE) * (3.14159265359 / 180));
+    glProgramUniform1f(agentShader.program, glGetUniformLocation(agentShader.program, "rotationAngle"), float(ROTATION_ANGLE) * (3.14159265359 / 180));
+    glProgramUniform1i(agentShader.program, glGetUniformLocation(agentShader.program, "sensorOffset"), SENSOR_OFFSET);
+    glProgramUniform1i(agentShader.program, glGetUniformLocation(agentShader.program, "sensorSize"), SENSOR_SIZE);
 
     // Decay shader uniform variables
     glProgramUniform1i(decayShader.program, glGetUniformLocation(decayShader.program, "decaySpeed"), DECAY_SPEED);

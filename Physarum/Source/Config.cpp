@@ -29,7 +29,7 @@ namespace Config {
         }
         else
         {
-            std::cerr << "Unable to load shader: " << filePath << std::endl;
+            std::cerr << "Unable to load configuration file: " << filePath << std::endl;
         }
 	}
 }

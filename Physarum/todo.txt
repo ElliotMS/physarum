@@ -1,5 +1,5 @@
 - Config parser handle float + int (and more?) not just int
 - Frame rate independent rendering
-- Sense algorithm
-- Use better random function in agent shader
 - Fix relative path reading of shader and config files
+- (Use better random function in agent shader)
+- (Improve sense & move algorithm)
