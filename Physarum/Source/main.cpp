@@ -50,6 +50,18 @@ int main(void)
     display.InitScreen(); // Creates full screen quad & trailmap texture
     Agent::Init(); // Intialize agents
 
+    // Agent shader uniform variables
+    glProgramUniform1i(agentShader.program, glGetUniformLocation(agentShader.program, "width"), TEXTURE_WIDTH);
+    glProgramUniform1i(agentShader.program, glGetUniformLocation(agentShader.program, "height"), TEXTURE_HEIGHT);
+    glProgramUniform1i(agentShader.program, glGetUniformLocation(agentShader.program, "stepSize"), STEP_SIZE);
+
+    // Decay shader uniform variables
+    glProgramUniform1i(decayShader.program, glGetUniformLocation(decayShader.program, "decaySpeed"), DECAY_SPEED);
+
+    // Diffuse shader uniform variables
+    glProgramUniform1i(diffuseShader.program, glGetUniformLocation(diffuseShader.program, "width"), TEXTURE_WIDTH);
+    glProgramUniform1i(diffuseShader.program, glGetUniformLocation(diffuseShader.program, "height"), TEXTURE_HEIGHT);
+
     while (!glfwWindowShouldClose(display.window))
     {
         glUseProgram(diffuseShader.program);

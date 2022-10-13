@@ -1,5 +1,5 @@
-- Config class handle float + int not just int
-- Send config data to shaders via uniforms
-- Consistent frame rate
+- Config parser handle float + int (and more?) not just int
+- Frame rate independent rendering
 - Sense algorithm
-- Out of bounds check for diffuse shader (to prevent pixels on edges from decaying faster)
+- Use better random function in agent shader
+- Fix relative path reading of shader and config files

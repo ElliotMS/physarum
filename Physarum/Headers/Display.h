@@ -6,13 +6,11 @@
 class Display
 {
 public:
-    Display(const char* title);
-    
     GLFWwindow* window;
-
-    void InitScreen();
-    void Update();
-
     GLuint trailMap;
 
+    Display(const char* title);
+    
+    void InitScreen();
+    void Update();
 };

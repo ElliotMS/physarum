@@ -12,8 +12,11 @@ Display::Display(const char* title)
 {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    //glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
-    window = glfwCreateWindow(DISPLAY_WIDTH, DISPLAY_HEIGHT, title, NULL, NULL);
+
+    if (FULLSCREEN)
+        window = glfwCreateWindow(DISPLAY_WIDTH, DISPLAY_HEIGHT, title, glfwGetPrimaryMonitor(), NULL);
+    else
+        window = glfwCreateWindow(DISPLAY_WIDTH, DISPLAY_HEIGHT, title, NULL, NULL);
     
     if (!window)
     {
@@ -72,7 +75,6 @@ void Display::InitScreen()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA32F, TEXTURE_WIDTH, TEXTURE_HEIGHT, 0, GL_RGBA, GL_FLOAT, NULL);
-
     glBindImageTexture(0, trailMap, 0, GL_FALSE, 0, GL_READ_WRITE, GL_RGBA32F);
 }
 
@@ -81,8 +83,7 @@ void Display::Update()
     glClear(GL_COLOR_BUFFER_BIT);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0); // Draw fullscreen quad
     glfwPollEvents();
-    if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_ESCAPE)) {
+    if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_ESCAPE))
         glfwSetWindowShouldClose(window, 1);
-    }
     glfwSwapBuffers(window);
 }

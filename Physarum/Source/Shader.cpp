@@ -26,7 +26,7 @@ std::string Shader::ParseShader(const std::string& filePath)
     return output;
 }
 
-GLuint Shader::CreateShader(const std::string& text, unsigned int type)
+GLuint Shader::CreateShader(const std::string& text, GLuint type)
 {
     GLuint shader = glCreateShader(type);
 

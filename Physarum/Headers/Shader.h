@@ -18,6 +18,6 @@ private:
 	GLuint m_computeShader;
 
 	std::string ParseShader(const std::string& filePath);
-	GLuint CreateShader(const std::string& text, unsigned int type);
+	GLuint CreateShader(const std::string& text, GLuint type);
 };
 

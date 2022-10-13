@@ -13,9 +13,9 @@ namespace Agent
 		
 		for (int i = 0; i < AGENT_COUNT * 3; i += 3)
 		{
-		    agentData[i+0] = Config::settings["TEXTURE_WIDTH"] /2.0;
-		    agentData[i+1] = Config::settings["TEXTURE_HEIGHT"] /2.0;
-		    agentData[i+2] = float(rand() % 6283) / 1000.0;
+		    agentData[i+0] = TEXTURE_WIDTH / 2;
+		    agentData[i+1] = TEXTURE_HEIGHT / 2;
+		    agentData[i+2] = (float(rand()) / float(RAND_MAX)) * (2 * 3.14159265359);
 		}
 		
 		glGenBuffers(1, &buffer);
