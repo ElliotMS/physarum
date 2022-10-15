@@ -30,56 +30,24 @@ int main(void)
     glDebugMessageCallback(DebugMessageCallback, 0);
 
     // Load and compile shaders 
-    Shader renderShader(
-        "./Shaders/vertex.glsl",
-        "./Shaders/fragment.glsl"
-    );
+    Shader renderShader("./Shaders/vertex.glsl","./Shaders/fragment.glsl");
+    Shader agentShader("./Shaders/agent.glsl");
+    Shader diffuseShader("./Shaders/diffuse.glsl");
+    Shader decayShader("./Shaders/decay.glsl");
 
-    Shader agentShader(
-        "./Shaders/agent.glsl"
-    );
-
-    Shader decayShader(
-        "./Shaders/decay.glsl"
-    );
-
-    Shader diffuseShader(
-        "./Shaders/diffuse.glsl"
-    );
+    // Bind shader uniform variables
+    agentShader.BindAgentUniforms();
+    diffuseShader.BindDiffuseUniforms();
+    decayShader.BindDecayUniforms();
 
     display.InitScreen(); // Creates full screen quad & trailmap texture
     Agent::Init(); // Intialize agents
 
-    // Agent shader uniform variables
-    glProgramUniform1i(agentShader.program, glGetUniformLocation(agentShader.program, "width"), TEXTURE_WIDTH);
-    glProgramUniform1i(agentShader.program, glGetUniformLocation(agentShader.program, "height"), TEXTURE_HEIGHT);
-    glProgramUniform1i(agentShader.program, glGetUniformLocation(agentShader.program, "stepSize"), STEP_SIZE);
-    glProgramUniform1f(agentShader.program, glGetUniformLocation(agentShader.program, "sensorAngle"), float(SENSOR_ANGLE) * (3.14159265359 / 180));
-    glProgramUniform1f(agentShader.program, glGetUniformLocation(agentShader.program, "rotationAngle"), float(ROTATION_ANGLE) * (3.14159265359 / 180));
-    glProgramUniform1i(agentShader.program, glGetUniformLocation(agentShader.program, "sensorOffset"), SENSOR_OFFSET);
-    glProgramUniform1i(agentShader.program, glGetUniformLocation(agentShader.program, "sensorSize"), SENSOR_SIZE);
-
-    // Decay shader uniform variables
-    glProgramUniform1i(decayShader.program, glGetUniformLocation(decayShader.program, "decaySpeed"), DECAY_SPEED);
-
-    // Diffuse shader uniform variables
-    glProgramUniform1i(diffuseShader.program, glGetUniformLocation(diffuseShader.program, "width"), TEXTURE_WIDTH);
-    glProgramUniform1i(diffuseShader.program, glGetUniformLocation(diffuseShader.program, "height"), TEXTURE_HEIGHT);
-
     while (!glfwWindowShouldClose(display.window))
     {
-        glUseProgram(diffuseShader.program);
-        glDispatchCompute(TEXTURE_WIDTH, TEXTURE_HEIGHT, 1); // NEED TO OPTIMIZE WORK GROUPS
-        glMemoryBarrier(GL_ALL_BARRIER_BITS);
-
-        glUseProgram(decayShader.program);
-        glDispatchCompute(TEXTURE_WIDTH, TEXTURE_HEIGHT, 1); // NEED TO OPTIMIZE WORK GROUPS
-        glMemoryBarrier(GL_ALL_BARRIER_BITS);
-
-        glUseProgram(agentShader.program);
-        glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 1, Agent::buffer);
-        glDispatchCompute(AGENT_COUNT/32, 1, 1); // NEED TO OPTIMIZE WORK GROUPS
-        glMemoryBarrier(GL_ALL_BARRIER_BITS);
+        diffuseShader.Dispath(TEXTURE_WIDTH, TEXTURE_HEIGHT, 1);
+        decayShader.Dispath(TEXTURE_WIDTH, TEXTURE_HEIGHT, 1);
+        agentShader.Dispath(AGENT_COUNT / 32, 1, 1);
 
         glUseProgram(renderShader.program);
         display.Update();

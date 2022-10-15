@@ -2,4 +2,4 @@
 - Frame rate independent rendering
 - Fix relative path reading of shader and config files
 - (Use better random function in agent shader)
-- (Improve sense & move algorithm)
+- (Improve sense & move algorithm. Add randomness?)

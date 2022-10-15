@@ -1,6 +1,7 @@
 #include "Shader.h"
 #include <iostream>
 #include <fstream>
+#include "Config.h"
 
 std::string Shader::ParseShader(const std::string& filePath)
 {
@@ -61,6 +62,38 @@ Shader::Shader(const std::string& computeShaderFilePath)
     m_computeShader = CreateShader(ParseShader(computeShaderFilePath), GL_COMPUTE_SHADER);
     glAttachShader(program, m_computeShader);
     glLinkProgram(program);
+}
+
+void Shader::BindAgentUniforms()
+{
+    glProgramUniform1i(program, glGetUniformLocation(program, "width"), TEXTURE_WIDTH);
+    glProgramUniform1i(program, glGetUniformLocation(program, "height"), TEXTURE_HEIGHT);
+    glProgramUniform1i(program, glGetUniformLocation(program, "agentCount"), AGENT_COUNT);
+    glProgramUniform1i(program, glGetUniformLocation(program, "stepSize"), STEP_SIZE);
+    glProgramUniform1f(program, glGetUniformLocation(program, "sensorAngle"), float(SENSOR_ANGLE) * (3.14159265359 / 180));
+    glProgramUniform1f(program, glGetUniformLocation(program, "rotationAngle"), float(ROTATION_ANGLE) * (3.14159265359 / 180));
+    glProgramUniform1i(program, glGetUniformLocation(program, "sensorOffset"), SENSOR_OFFSET);
+    glProgramUniform1i(program, glGetUniformLocation(program, "sensorSize"), SENSOR_SIZE);
+}
+
+void Shader::BindDiffuseUniforms()
+{
+    glProgramUniform1i(program, glGetUniformLocation(program, "width"), TEXTURE_WIDTH);
+    glProgramUniform1i(program, glGetUniformLocation(program, "height"), TEXTURE_HEIGHT);
+}
+
+void Shader::BindDecayUniforms()
+{
+    glProgramUniform1i(program, glGetUniformLocation(program, "width"), TEXTURE_WIDTH);
+    glProgramUniform1i(program, glGetUniformLocation(program, "height"), TEXTURE_HEIGHT);
+    glProgramUniform1i(program, glGetUniformLocation(program, "decaySpeed"), DECAY_SPEED);
+}
+
+void Shader::Dispath(GLuint x, GLuint y, GLuint z)
+{
+    glUseProgram(program);
+    glDispatchCompute(x, y, z);
+    glMemoryBarrier(GL_ALL_BARRIER_BITS);
 }
 
 Shader::~Shader()

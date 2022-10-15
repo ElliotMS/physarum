@@ -6,6 +6,7 @@ layout(rgba32f, binding = 0) uniform image2D trailMap;
 
 uniform int width;
 uniform int height;
+uniform int agentCount;
 uniform int stepSize;
 uniform float sensorAngle;
 uniform float rotationAngle;
@@ -69,6 +70,7 @@ float sense(Agent agent, float sensorAngle) {
 void main()
 {
     int ID = int(gl_GlobalInvocationID.x);
+    if (ID >= agentCount) return;
     Agent agent = agents[ID];
     float weightFront = sense(agent, 0);
     float weightRight = sense(agent, -sensorAngle);
