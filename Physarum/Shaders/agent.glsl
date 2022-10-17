@@ -12,6 +12,9 @@ uniform float sensorAngle;
 uniform float rotationAngle;
 uniform int sensorOffset;
 uniform int sensorSize;
+uniform float trailColorR;
+uniform float trailColorG;
+uniform float trailColorB;
 
 float PI = 3.14159265359;
 
@@ -27,26 +30,6 @@ layout(std430, binding = 1) buffer Agents {
 
 float random(vec2 co) {
     return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453);
-}
-
-void moveAgent(int ID) {
-    Agent agent = agents[ID];
-
-    vec2 direction = vec2(cos(agent.angle), sin(agent.angle));
-    vec2 newPos = vec2(agent.x, agent.y) + direction * stepSize;
-
-    if (newPos.x < 0 || newPos.x > width || newPos.y < 0 || newPos.y > height)
-    {
-        newPos.x = agent.x - 0.01;
-        newPos.y = agent.y - 0.01;
-        agents[ID].angle = random(vec2(agent.x + ID, agent.y)) * (2 * PI); // Need better seed
-    }
-
-    vec4 trailColor = vec4(1.0, 1.0, 1.0, 1.0);
-    imageStore(trailMap, ivec2(agent.x, agent.y), trailColor);
-
-    agents[ID].x = newPos.x;
-    agents[ID].y = newPos.y;
 }
 
 float sense(Agent agent, float sensorAngle) {
@@ -67,6 +50,26 @@ float sense(Agent agent, float sensorAngle) {
     return sum.x + sum.y + sum.z;
 }
 
+void move(int ID) {
+    Agent agent = agents[ID];
+
+    vec2 direction = vec2(cos(agent.angle), sin(agent.angle));
+    vec2 newPos = vec2(agent.x, agent.y) + direction * stepSize;
+
+    if (newPos.x < 0 || newPos.x > width || newPos.y < 0 || newPos.y > height) // Out of bounds check
+    {
+        newPos.x = agent.x - 0.01;
+        newPos.y = agent.y - 0.01;
+        agents[ID].angle = random(vec2(agent.x + ID, agent.y)) * (2 * PI);
+    }
+
+    vec4 trailColor = vec4(trailColorR, trailColorG, trailColorB, 1.0);
+    imageStore(trailMap, ivec2(agent.x, agent.y), trailColor);
+
+    agents[ID].x = newPos.x;
+    agents[ID].y = newPos.y;
+}
+
 void main()
 {
     int ID = int(gl_GlobalInvocationID.x);
@@ -76,11 +79,11 @@ void main()
     float weightRight = sense(agent, -sensorAngle);
     float weightLeft = sense(agent, sensorAngle);
 
-    if (weightFront > weightRight && weightFront > weightLeft && weightFront - weightRight > 0.01 && weightFront - weightLeft > 0.01){
+    if (weightFront > weightRight && weightFront > weightLeft){
         // Don't turn
         agents[ID].angle += 0;
     } 
-    else if (weightFront < weightRight && weightFront < weightLeft && weightRight - weightFront > 0.01 && weightLeft - weightFront > 0.01) {
+    else if (weightFront < weightRight && weightFront < weightLeft) {
         //Turn randomly left or right
         if (random(vec2(agent.x + ID, agent.y)) > 0.5) {
             agents[ID].angle -= rotationAngle;
@@ -88,14 +91,14 @@ void main()
             agents[ID].angle += rotationAngle;
         }
     } 
-    else if (weightRight > weightLeft && weightRight - weightLeft > 0.01) {
+    else if (weightRight > weightLeft) {
         // Turn right
         agents[ID].angle -= rotationAngle;
     } 
-    else if (weightLeft > weightRight && weightLeft - weightRight > 0.01) {
+    else if (weightLeft > weightRight) {
         // Turn left
         agents[ID].angle += rotationAngle;
     }
 
-    moveAgent(ID);
+    move(ID);
 }

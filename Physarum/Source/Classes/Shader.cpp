@@ -1,7 +1,7 @@
-#include "Shader.h"
 #include <iostream>
 #include <fstream>
-#include "Config.h"
+#include "Shader.h"
+#include "config.h"
 
 std::string Shader::ParseShader(const std::string& filePath)
 {
@@ -70,10 +70,13 @@ void Shader::BindAgentUniforms()
     glProgramUniform1i(program, glGetUniformLocation(program, "height"), TEXTURE_HEIGHT);
     glProgramUniform1i(program, glGetUniformLocation(program, "agentCount"), AGENT_COUNT);
     glProgramUniform1i(program, glGetUniformLocation(program, "stepSize"), STEP_SIZE);
-    glProgramUniform1f(program, glGetUniformLocation(program, "sensorAngle"), float(SENSOR_ANGLE) * (3.14159265359 / 180));
-    glProgramUniform1f(program, glGetUniformLocation(program, "rotationAngle"), float(ROTATION_ANGLE) * (3.14159265359 / 180));
+    glProgramUniform1f(program, glGetUniformLocation(program, "sensorAngle"), SENSOR_ANGLE * (3.14159265359 / 180));
+    glProgramUniform1f(program, glGetUniformLocation(program, "rotationAngle"), ROTATION_ANGLE * (3.14159265359 / 180));
     glProgramUniform1i(program, glGetUniformLocation(program, "sensorOffset"), SENSOR_OFFSET);
     glProgramUniform1i(program, glGetUniformLocation(program, "sensorSize"), SENSOR_SIZE);
+    glProgramUniform1f(program, glGetUniformLocation(program, "trailColorR"), TRAIL_COLOR_R);
+    glProgramUniform1f(program, glGetUniformLocation(program, "trailColorG"), TRAIL_COLOR_G);
+    glProgramUniform1f(program, glGetUniformLocation(program, "trailColorB"), TRAIL_COLOR_B);
 }
 
 void Shader::BindDiffuseUniforms()

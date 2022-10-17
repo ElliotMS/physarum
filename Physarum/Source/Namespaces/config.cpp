@@ -1,8 +1,8 @@
-#include "Config.h"
+#include "config.h"
 #include <iostream>
 #include <fstream>
 
-namespace Config {
+namespace config {
 
     std::unordered_map<std::string, int> settings;
 

@@ -18,16 +18,16 @@
     <ClCompile Include="Source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Shader.cpp">
+    <ClCompile Include="Source\Classes\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Display.cpp">
+    <ClCompile Include="Source\Classes\Display.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Agent.cpp">
+    <ClCompile Include="Source\Namespaces\agent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Config.cpp">
+    <ClCompile Include="Source\Namespaces\config.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -38,10 +38,10 @@
     <ClInclude Include="Headers\Display.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Agent.h">
+    <ClInclude Include="Headers\agent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Config.h">
+    <ClInclude Include="Headers\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

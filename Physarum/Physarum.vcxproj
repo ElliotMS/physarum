@@ -77,6 +77,7 @@
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Physarum\Headers;$(SolutionDir)Dependencies\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -94,6 +95,7 @@
       <PreprocessorDefinitions>GLEW_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Dependencies\GLEW\include;$(SolutionDir)Physarum\Headers;$(SolutionDir)Dependencies\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -133,17 +135,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Agent.cpp" />
-    <ClCompile Include="Source\Display.cpp" />
-    <ClCompile Include="Source\Shader.cpp" />
+    <ClCompile Include="Source\Namespaces\agent.cpp" />
+    <ClCompile Include="Source\Classes\Display.cpp" />
+    <ClCompile Include="Source\Classes\Shader.cpp" />
     <ClCompile Include="Source\main.cpp" />
-    <ClCompile Include="Source\Config.cpp" />
+    <ClCompile Include="Source\Namespaces\config.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Headers\Agent.h" />
+    <ClInclude Include="Headers\agent.h" />
     <ClInclude Include="Headers\Display.h" />
     <ClInclude Include="Headers\Shader.h" />
-    <ClInclude Include="Headers\Config.h" />
+    <ClInclude Include="Headers\config.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Config\config.ini" />

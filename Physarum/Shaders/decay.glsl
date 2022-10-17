@@ -13,7 +13,7 @@ void main()
     ivec2 pixelPos = ivec2(gl_GlobalInvocationID.xy);
     if (pixelPos.x < 0 || pixelPos.x > width || pixelPos.y < 0 || pixelPos.y > height) return;
     vec4 currentValue = imageLoad(trailMap, pixelPos);
-    vec4 decayedValue = currentValue - vec4(0.001, 0.001, 0.001, 0.0) * decaySpeed;
-    
+    vec4 decayedValue = max(vec4(0, 0, 0, 1.0), currentValue - vec4(0.001, 0.001, 0.001, 0.0) * decaySpeed);
+        
     imageStore(trailMap, pixelPos, decayedValue);
 }

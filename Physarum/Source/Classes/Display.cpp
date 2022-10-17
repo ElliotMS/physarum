@@ -1,5 +1,5 @@
 #include "Display.h"
-#include "Config.h"
+#include "config.h"
 #include <iostream>
 
 
