@@ -46,12 +46,12 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Shaders\vertex.glsl" />
-    <None Include="Resources\Shaders\fragment.glsl" />
-    <None Include="Resources\Shaders\agent.glsl" />
-    <None Include="Resources\Shaders\decay.glsl" />
+    <None Include="src\vertex.glsl" />
+    <None Include="src\fragment.glsl" />
+    <None Include="src\agent.glsl" />
+    <None Include="src\decay.glsl" />
+	<None Include="src\diffuse.glsl" />
     <None Include="config.ini" />
-    <None Include="Resources\Shaders\diffuse.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="todo.txt" />
