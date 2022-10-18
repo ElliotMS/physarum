@@ -1,7 +1,6 @@
-- Config parser handle float + int (and more?) not just int
 - Typesafe config variabel definition without using #define
 - Frame rate independent rendering
-- Fix relative path reading of shader and config files / Add installer/setup file
+- Add installer/setup file
 - (Use better random function in agent shader)
 - (Improve sense & move algorithm. Add randomness?)
 - (Add support for modifyable blur radiuses)

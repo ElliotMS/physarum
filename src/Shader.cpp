@@ -22,6 +22,7 @@ std::string Shader::ParseShader(const std::string& filePath)
     else
     {
         std::cerr << "Unable to load shader: " << filePath << std::endl;
+        std::exit(-1);
     }
 
     return output;
@@ -70,8 +71,8 @@ void Shader::BindAgentUniforms()
     glProgramUniform1i(program, glGetUniformLocation(program, "height"), TEXTURE_HEIGHT);
     glProgramUniform1i(program, glGetUniformLocation(program, "agentCount"), AGENT_COUNT);
     glProgramUniform1i(program, glGetUniformLocation(program, "stepSize"), STEP_SIZE);
-    glProgramUniform1f(program, glGetUniformLocation(program, "sensorAngle"), SENSOR_ANGLE * (3.14159265359 / 180));
-    glProgramUniform1f(program, glGetUniformLocation(program, "rotationAngle"), ROTATION_ANGLE * (3.14159265359 / 180));
+    glProgramUniform1f(program, glGetUniformLocation(program, "sensorAngle"), SENSOR_ANGLE);
+    glProgramUniform1f(program, glGetUniformLocation(program, "rotationAngle"), ROTATION_ANGLE);
     glProgramUniform1i(program, glGetUniformLocation(program, "sensorOffset"), SENSOR_OFFSET);
     glProgramUniform1i(program, glGetUniformLocation(program, "sensorSize"), SENSOR_SIZE);
     glProgramUniform1f(program, glGetUniformLocation(program, "trailColorR"), TRAIL_COLOR_R);
