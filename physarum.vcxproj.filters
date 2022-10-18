@@ -15,33 +15,33 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\main.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Classes\Shader.cpp">
+    <ClCompile Include="src\Shader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Classes\Display.cpp">
+    <ClCompile Include="src\Display.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Namespaces\agent.cpp">
+    <ClCompile Include="src\agent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Namespaces\config.cpp">
+    <ClCompile Include="src\config.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Headers\Shader.h">
+    <ClInclude Include="src\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\Display.h">
+    <ClInclude Include="src\Display.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\agent.h">
+    <ClInclude Include="src\agent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Headers\config.h">
+    <ClInclude Include="src\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -50,7 +50,7 @@
     <None Include="Resources\Shaders\fragment.glsl" />
     <None Include="Resources\Shaders\agent.glsl" />
     <None Include="Resources\Shaders\decay.glsl" />
-    <None Include="Config\config.ini" />
+    <None Include="config.ini" />
     <None Include="Resources\Shaders\diffuse.glsl" />
   </ItemGroup>
   <ItemGroup>

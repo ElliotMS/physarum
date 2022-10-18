@@ -13,7 +13,7 @@ void GLAPIENTRY DebugMessageCallback(GLenum source, GLenum type, GLuint id, GLen
 
 int main(void)
 {
-    config::Load("./Config/config.ini"); // Load configuration file
+    config::Load("../config/settings.ini"); // Load configuration file
 
     // Initialize GLFW
     if (!glfwInit()) 
@@ -30,10 +30,10 @@ int main(void)
     glDebugMessageCallback(DebugMessageCallback, 0);
 
     // Load and compile shaders 
-    Shader renderShader("./Shaders/vertex.glsl","./Shaders/fragment.glsl");
-    Shader agentShader("./Shaders/agent.glsl");
-    Shader diffuseShader("./Shaders/diffuse.glsl");
-    Shader decayShader("./Shaders/decay.glsl");
+    Shader renderShader("../src/vertex.glsl","../src/fragment.glsl");
+    Shader agentShader("../src/agent.glsl");
+    Shader diffuseShader("../src/diffuse.glsl");
+    Shader decayShader("../src/decay.glsl");
 
     // Bind shader uniform variables
     agentShader.BindAgentUniforms();
