@@ -21,7 +21,8 @@ Display::Display(const char* title)
     if (!window)
     {
         glfwTerminate();
-        std::cerr << "Error: Window creation failed " << std::endl;;
+        std::cerr << "Error: Window creation failed " << std::endl;
+        std::exit(-1);
     }
     
     glfwMakeContextCurrent(window);

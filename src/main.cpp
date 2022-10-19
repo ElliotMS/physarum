@@ -3,7 +3,7 @@
 #include <iostream>
 #include "Display.h"
 #include "Shader.h"
-#include "agent.h"
+#include "agent_buffer.h"
 #include "config.h"
 
 void GLAPIENTRY DebugMessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam)
@@ -34,10 +34,10 @@ int main(void)
     glDebugMessageCallback(DebugMessageCallback, 0);
 
     // Parse, compile and attach shaders to programs
-    Shader renderShader("../src/vertex.glsl","../src/fragment.glsl");
-    Shader agentShader("../src/agent.glsl");
-    Shader diffuseShader("../src/diffuse.glsl");
-    Shader decayShader("../src/decay.glsl");
+    Shader renderShader("../src/shaders/vertex.glsl","../src/shaders/fragment.glsl");
+    Shader agentShader("../src/shaders/agent.glsl");
+    Shader diffuseShader("../src/shaders/diffuse.glsl");
+    Shader decayShader("../src/shaders/decay.glsl");
 
     // Bind shader uniform variables
     agentShader.BindAgentUniforms();
@@ -45,7 +45,7 @@ int main(void)
     decayShader.BindDecayUniforms();
 
     display.InitScreen(); // Creates full screen quad & trailmap texture
-    agent::Init(); // Intialize and bind agent buffer 
+    agent_buffer::Init(); // Intialize and bind agent buffer 
 
     // Main loop
     while (!glfwWindowShouldClose(display.window))

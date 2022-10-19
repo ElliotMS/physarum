@@ -1,7 +1,7 @@
 #pragma once
 #include <GL/glew.h>
 
-namespace agent
+namespace agent_buffer
 {
 	extern GLuint buffer;
 

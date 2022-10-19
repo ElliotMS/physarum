@@ -144,24 +144,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\agent.cpp" />
+    <ClCompile Include="src\agent_buffer.cpp" />
     <ClCompile Include="src\Display.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\config.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\agent.h" />
+    <ClInclude Include="src\agent_buffer.h" />
     <ClInclude Include="src\Display.h" />
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\config.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\agent.glsl" />
-    <None Include="src\diffuse.glsl" />
-    <None Include="src\fragment.glsl" />
-    <None Include="src\decay.glsl" />
-    <None Include="src\vertex.glsl" />
+    <None Include="src\shaders\agent.glsl" />
+    <None Include="src\shaders\diffuse.glsl" />
+    <None Include="src\shaders\fragment.glsl" />
+    <None Include="src\shaders\decay.glsl" />
+    <None Include="src\shaders\vertex.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="todo.txt" />

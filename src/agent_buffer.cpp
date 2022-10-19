@@ -1,8 +1,8 @@
-#include "Agent.h"
-#include "config.h"
 #include <random>
+#include "agent_buffer.h"
+#include "config.h"
 
-namespace agent
+namespace agent_buffer
 {
 	GLuint buffer;
 

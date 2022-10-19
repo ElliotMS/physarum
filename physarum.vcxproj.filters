@@ -9,10 +9,6 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -24,7 +20,7 @@
     <ClCompile Include="src\Display.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\agent.cpp">
+    <ClCompile Include="src\agent_buffer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\config.cpp">
@@ -38,7 +34,7 @@
     <ClInclude Include="src\Display.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\agent.h">
+    <ClInclude Include="src\agent_buffer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\config.h">
@@ -46,11 +42,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\vertex.glsl" />
-    <None Include="src\fragment.glsl" />
-    <None Include="src\agent.glsl" />
-    <None Include="src\decay.glsl" />
-    <None Include="src\diffuse.glsl" />
+    <None Include="src\shaders\vertex.glsl" />
+    <None Include="src\shaders\fragment.glsl" />
+    <None Include="src\shaders\agent.glsl" />
+    <None Include="src\shaders\decay.glsl" />
+    <None Include="src\shaders\diffuse.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="todo.txt" />
