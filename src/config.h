@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <unordered_map>
 #include <inih/INIReader.h>
 
 #define FULLSCREEN     config::settings.GetBoolean("PROGRAM",	  "FULLSCREEN",		false)
@@ -24,4 +23,4 @@ namespace config
 	extern INIReader settings;
 
 	void Load(const std::string filePath);
-}
+};

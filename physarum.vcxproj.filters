@@ -50,8 +50,7 @@
     <None Include="src\fragment.glsl" />
     <None Include="src\agent.glsl" />
     <None Include="src\decay.glsl" />
-	<None Include="src\diffuse.glsl" />
-    <None Include="config.ini" />
+    <None Include="src\diffuse.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="todo.txt" />

@@ -14,13 +14,6 @@ namespace agent
 		{
 			float midPointX = TEXTURE_WIDTH / 2;
 			float midPointY = TEXTURE_HEIGHT / 2;
-
-		    //agentData[i+0] = (float(rand()) / float(RAND_MAX)) * TEXTURE_WIDTH;
-		    //agentData[i+1] = (float(rand()) / float(RAND_MAX)) * TEXTURE_HEIGHT
-			
-			//agentData[i+0] = midPointX;
-			//agentData[i+1] = midPointY;
-			
 			float randomAngle = (float(rand()) / float(RAND_MAX)) * (2 * 3.14159265359);
 			float randomDistance = (float(rand()) / float(RAND_MAX)) * midPointY;
 			float x = cos(randomAngle) * randomDistance + midPointX;
@@ -28,7 +21,6 @@ namespace agent
 			agentData[i+0] = x;
 			agentData[i+1] = y;
 		    
-			//agentData[i+2] = (float(rand()) / float(RAND_MAX)) * (2 * 3.14159265359);
 			agentData[i+2] = atan2(midPointY - y, midPointX - x); // Angle facing middle
 		}
 		

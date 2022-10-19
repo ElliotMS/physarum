@@ -7,10 +7,10 @@ class Display
 {
 public:
     GLFWwindow* window;
-    GLuint trailMap;
-
     Display(const char* title);
     
     void InitScreen();
     void Update();
+private:
+    GLuint m_trailMap;
 };

@@ -16,7 +16,7 @@ uniform float trailColorR;
 uniform float trailColorG;
 uniform float trailColorB;
 
-float PI = 3.14159265359;
+const float PI = 3.14159265359;
 
 struct Agent {
     float x;
