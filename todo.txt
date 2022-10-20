@@ -1,7 +1,4 @@
-- Typesafe config variabel definition without using #define
 - Frame rate independent rendering
 - Add installer/setup file
-- Add ability to draw/erase "pre pattern stimuli"
 - (Use better random function in agent shader)
 - (Improve sense & move algorithm. Add randomness?)
-- (Add support for modifyable blur radiuses)

@@ -2,10 +2,21 @@
 #include "config.h"
 #include <iostream>
 
-
 static void WindowResizeCallback(GLFWwindow * window, int width, int height)
 {
     glViewport(0, 0, width, height);
+}
+
+static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+    if (action == GLFW_PRESS) {
+        switch (key) {
+        case GLFW_KEY_ESCAPE:
+            glfwSetWindowShouldClose(window, 1);
+            break;
+        // Easily add more macros with additional switch cases
+        }
+    }
 }
 
 Display::Display(const char* title)
@@ -28,6 +39,8 @@ Display::Display(const char* title)
     glfwMakeContextCurrent(window);
     glViewport(0, 0, DISPLAY_WIDTH, DISPLAY_HEIGHT);
     glfwSetWindowSizeCallback(window, WindowResizeCallback);
+    glfwSetKeyCallback(window, KeyCallback);
+    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
     glfwSwapInterval(1);
 }
 
@@ -48,13 +61,13 @@ void Display::InitScreen()
     };
 
     // Create and bind vertex buffer object
-    unsigned int VBO;
+    GLuint VBO;
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     // Create and bind vertex array object
-    unsigned int VAO;
+    GLuint VAO;
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
 
@@ -65,12 +78,12 @@ void Display::InitScreen()
     glEnableVertexAttribArray(1);
 
     // Create and bind element buffer object
-    unsigned int EBO;
+    GLuint EBO;
     glGenBuffers(1, &EBO);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-    // Texture //
+    // Texture 
     glGenTextures(1, &m_trailMap);
     glBindTexture(GL_TEXTURE_2D, m_trailMap);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -84,7 +97,5 @@ void Display::Update()
     glClear(GL_COLOR_BUFFER_BIT);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0); // Draw fullscreen quad
     glfwPollEvents();
-    if (GLFW_PRESS == glfwGetKey(window, GLFW_KEY_ESCAPE))
-        glfwSetWindowShouldClose(window, 1);
     glfwSwapBuffers(window);
 }

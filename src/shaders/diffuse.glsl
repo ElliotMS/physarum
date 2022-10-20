@@ -6,6 +6,7 @@ layout(rgba32f, binding = 0) uniform image2D trailMap;
 
 uniform int width;
 uniform int height;
+uniform int diffuseSize;
 
 void main()
 {
@@ -14,8 +15,8 @@ void main()
     vec4 sum = vec4(0.0);
     int count = 0;
 
-    for (int i = -1; i <= 1; i++) {     // Loop X offsets
-        for (int j = -1; j <= 1; j++) { // Loop Y offsets
+    for (int i = -diffuseSize; i <= diffuseSize; i++) {     // Loop X offsets
+        for (int j = -diffuseSize; j <= diffuseSize; j++) { // Loop Y offsets
             ivec2 currentPos = pixelPos + ivec2(i, j);
             if (!(currentPos.x < 0 || currentPos.y < 0 || currentPos.x >= width || currentPos.y >= height)) { // Out of bounds check
                 sum += imageLoad(trailMap, currentPos);

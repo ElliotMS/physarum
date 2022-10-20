@@ -11,6 +11,7 @@ public:
     
     void InitScreen();
     void Update();
+
 private:
     GLuint m_trailMap;
 };

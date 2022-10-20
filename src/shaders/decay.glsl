@@ -15,7 +15,7 @@ void main()
     vec4 currentValue = imageLoad(trailMap, pixelPos);
     vec4 decayedValue = max(
         vec4(0, 0, 0, 1.0),
-        currentValue - vec4(0.001, 0.001, 0.001, 0) * decaySpeed
+        currentValue - vec4(0.001, 0.001, 0.001, 0.0) * decaySpeed
     );
         
     imageStore(trailMap, pixelPos, decayedValue);

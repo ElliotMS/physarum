@@ -84,6 +84,7 @@ void Shader::BindDiffuseUniforms()
 {
     glProgramUniform1i(m_program, glGetUniformLocation(m_program, "width"), TEXTURE_WIDTH);
     glProgramUniform1i(m_program, glGetUniformLocation(m_program, "height"), TEXTURE_HEIGHT);
+    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "diffuseSize"), DIFFUSE_SIZE);
 }
 
 void Shader::BindDecayUniforms()
