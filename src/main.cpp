@@ -51,7 +51,7 @@ int main(void)
     while (!glfwWindowShouldClose(display.window))
     {
         diffuseShader.Dispath(TEXTURE_WIDTH, TEXTURE_HEIGHT, 1);
-        agentShader.Dispath(AGENT_COUNT / 32, 1, 1);
+        agentShader.Dispath(AGENT_COUNT / 128, 1, 1);
         decayShader.Dispath(TEXTURE_WIDTH, TEXTURE_HEIGHT, 1);
         renderShader.Use();
         display.Update();

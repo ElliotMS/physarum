@@ -91,7 +91,9 @@ void Shader::BindDecayUniforms()
 {
     glProgramUniform1i(m_program, glGetUniformLocation(m_program, "width"), TEXTURE_WIDTH);
     glProgramUniform1i(m_program, glGetUniformLocation(m_program, "height"), TEXTURE_HEIGHT);
-    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "decaySpeed"), DECAY_SPEED);
+    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "decaySpeedR"), DECAY_SPEED_R);
+    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "decaySpeedG"), DECAY_SPEED_G);
+    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "decaySpeedB"), DECAY_SPEED_B);
 }
 
 void Shader::Dispath(GLuint x, GLuint y, GLuint z)

@@ -1,6 +1,6 @@
 #version 430 core
 
-layout(local_size_x = 32, local_size_y = 1, local_size_z = 1) in;
+layout(local_size_x = 128, local_size_y = 1, local_size_z = 1) in;
 
 layout(rgba32f, binding = 0) uniform image2D trailMap;
 
@@ -32,7 +32,7 @@ float random(vec2 co) {
     return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453);
 }
 
-float sense(Agent agent, float sensorAngle) {
+float Sense(Agent agent, float sensorAngle) {
     float localSensorAngle = agent.angle + sensorAngle; 
     vec2 sensorDir = vec2(cos(localSensorAngle), sin(localSensorAngle));
     ivec2 sensorPos = ivec2(agent.x + sensorDir.x * sensorOffset, agent.y + sensorDir.y * sensorOffset);
@@ -50,7 +50,35 @@ float sense(Agent agent, float sensorAngle) {
     return sum.x + sum.y + sum.z;
 }
 
-void move(int ID) {
+void Turn(int ID) {
+    Agent agent = agents[ID];
+    float weightFront = Sense(agent, 0);
+    float weightRight = Sense(agent, -sensorAngle);
+    float weightLeft = Sense(agent, sensorAngle);
+
+    if (weightFront > weightRight && weightFront > weightLeft){
+        // Don't turn
+        agents[ID].angle += 0;
+    } 
+    else if (weightFront < weightRight && weightFront < weightLeft) {
+        //Turn randomly left or right
+        if (random(vec2(agent.x + ID, agent.y)) > 0.5) {
+            agents[ID].angle -= rotationAngle;
+        } else {
+            agents[ID].angle += rotationAngle;
+        }
+    } 
+    else if (weightRight > weightLeft) {
+        // Turn right
+        agents[ID].angle -= rotationAngle;
+    } 
+    else if (weightLeft > weightRight) {
+        // Turn left
+        agents[ID].angle += rotationAngle;
+    }
+}
+
+void Move(int ID) {
     Agent agent = agents[ID];
 
     vec2 direction = vec2(cos(agent.angle), sin(agent.angle));
@@ -74,31 +102,6 @@ void main()
 {
     int ID = int(gl_GlobalInvocationID.x);
     if (ID >= agentCount) return;
-    Agent agent = agents[ID];
-    float weightFront = sense(agent, 0);
-    float weightRight = sense(agent, -sensorAngle);
-    float weightLeft = sense(agent, sensorAngle);
-
-    if (weightFront > weightRight && weightFront > weightLeft){
-        // Don't turn
-        agents[ID].angle += 0;
-    } 
-    else if (weightFront < weightRight && weightFront < weightLeft) {
-        //Turn randomly left or right
-        if (random(vec2(agent.x + ID, agent.y)) > 0.5) {
-            agents[ID].angle -= rotationAngle;
-        } else {
-            agents[ID].angle += rotationAngle;
-        }
-    } 
-    else if (weightRight > weightLeft) {
-        // Turn right
-        agents[ID].angle -= rotationAngle;
-    } 
-    else if (weightLeft > weightRight) {
-        // Turn left
-        agents[ID].angle += rotationAngle;
-    }
-
-    move(ID);
+    Turn(ID);
+    Move(ID);
 }
