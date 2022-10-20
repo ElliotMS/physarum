@@ -18,9 +18,9 @@
 #define DECAY_SPEED_G  config::settings.GetInteger("ENVIRONMENT", "DECAY_SPEED_G", 5)
 #define DECAY_SPEED_B  config::settings.GetInteger("ENVIRONMENT", "DECAY_SPEED_B", 5)
 #define DIFFUSE_SIZE   config::settings.GetInteger("ENVIRONMENT", "DIFFUSE_SIZE", 1)
-#define TRAIL_COLOR_R  config::settings.GetFloat("ENVIRONMENT", "TRAIL_COLOR_R", 255) / float(255)
-#define TRAIL_COLOR_G  config::settings.GetFloat("ENVIRONMENT", "TRAIL_COLOR_G", 255) / float(255)
-#define TRAIL_COLOR_B  config::settings.GetFloat("ENVIRONMENT", "TRAIL_COLOR_B", 255) / float(255)
+#define TRAIL_COLOR_R  config::settings.GetFloat("ENVIRONMENT", "TRAIL_COLOR_R", 255) / 255
+#define TRAIL_COLOR_G  config::settings.GetFloat("ENVIRONMENT", "TRAIL_COLOR_G", 255) / 255
+#define TRAIL_COLOR_B  config::settings.GetFloat("ENVIRONMENT", "TRAIL_COLOR_B", 255) / 255
 
 namespace config
 {
