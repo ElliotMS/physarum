@@ -144,17 +144,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\agent_buffer.cpp" />
-    <ClCompile Include="src\Display.cpp" />
+    <ClCompile Include="src\Window.cpp" />
     <ClCompile Include="src\Shader.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\config.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\agent_buffer.h" />
-    <ClInclude Include="src\Display.h" />
+    <ClInclude Include="src\debug.h" />
+    <ClInclude Include="src\Window.h" />
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\config.h" />
+    <ClInclude Include="src\trail_map.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\agent.glsl" />

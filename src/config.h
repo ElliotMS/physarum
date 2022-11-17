@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <inih/INIReader.h>
+#include "Shader.h"
 
 #define FULLSCREEN     config::settings.GetBoolean("PROGRAM", "FULLSCREEN", false)
 #define DISPLAY_WIDTH  config::settings.GetInteger("PROGRAM", "DISPLAY_WIDTH", 1280)
@@ -26,5 +27,9 @@ namespace config
 {
 	extern INIReader settings;
 
-	void Load(const std::string filePath);
+	void LoadSettings(const std::string filePath);
+
+	void BindAgentUniforms(GLuint program);
+	void BindDiffuseUniforms(GLuint program);
+	void BindDecayUniforms(GLuint program);
 };

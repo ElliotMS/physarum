@@ -1,4 +1,6 @@
 - Frame rate independent rendering
 - Add installer/setup file
+- Pre-pattern stimuli
+- Reorganize project structure
 - (Use better random function in agent shader)
 - (Improve sense & move algorithm. Add randomness?)

@@ -3,15 +3,14 @@
 #include <GLFW/glfw3.h>
 #include <string>
 
-class Display
+class Window
 {
 public:
-    GLFWwindow* window;
-    Display(const char* title);
+    Window(const char* title);
     
-    void InitScreen();
     void Update();
+    bool ShouldClose();
 
 private:
-    GLuint m_trailMap;
+    GLFWwindow* p_window;
 };

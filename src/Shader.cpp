@@ -49,72 +49,41 @@ GLuint Shader::CreateShader(const std::string& text, GLuint type)
 
 Shader::Shader(const std::string& vsFilePath, const std::string& fsFilePath)
 {
-    m_program = glCreateProgram();
+    program = glCreateProgram();
     m_vertexShader = CreateShader(ParseShader(vsFilePath), GL_VERTEX_SHADER);
     m_fragmentShader = CreateShader(ParseShader(fsFilePath), GL_FRAGMENT_SHADER);
-    glAttachShader(m_program, m_vertexShader);
-    glAttachShader(m_program, m_fragmentShader);
-    glLinkProgram(m_program);
+    glAttachShader(program, m_vertexShader);
+    glAttachShader(program, m_fragmentShader);
+    glLinkProgram(program);
 }
 
 Shader::Shader(const std::string& csFilePath)
 {
-    m_program = glCreateProgram();
+    program = glCreateProgram();
     m_computeShader = CreateShader(ParseShader(csFilePath), GL_COMPUTE_SHADER);
-    glAttachShader(m_program, m_computeShader);
-    glLinkProgram(m_program);
-}
-
-void Shader::BindAgentUniforms()
-{
-    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "width"), TEXTURE_WIDTH);
-    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "height"), TEXTURE_HEIGHT);
-    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "agentCount"), AGENT_COUNT);
-    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "stepSize"), STEP_SIZE);
-    glProgramUniform1f(m_program, glGetUniformLocation(m_program, "sensorAngle"), SENSOR_ANGLE);
-    glProgramUniform1f(m_program, glGetUniformLocation(m_program, "rotationAngle"), ROTATION_ANGLE);
-    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "sensorOffset"), SENSOR_OFFSET);
-    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "sensorSize"), SENSOR_SIZE);
-    glProgramUniform1f(m_program, glGetUniformLocation(m_program, "trailColorR"), TRAIL_COLOR_R);
-    glProgramUniform1f(m_program, glGetUniformLocation(m_program, "trailColorG"), TRAIL_COLOR_G);
-    glProgramUniform1f(m_program, glGetUniformLocation(m_program, "trailColorB"), TRAIL_COLOR_B);
-}
-
-void Shader::BindDiffuseUniforms()
-{
-    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "width"), TEXTURE_WIDTH);
-    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "height"), TEXTURE_HEIGHT);
-    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "diffuseSize"), DIFFUSE_SIZE);
-}
-
-void Shader::BindDecayUniforms()
-{
-    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "width"), TEXTURE_WIDTH);
-    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "height"), TEXTURE_HEIGHT);
-    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "decaySpeedR"), DECAY_SPEED_R);
-    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "decaySpeedG"), DECAY_SPEED_G);
-    glProgramUniform1i(m_program, glGetUniformLocation(m_program, "decaySpeedB"), DECAY_SPEED_B);
+    glAttachShader(program, m_computeShader);
+    glLinkProgram(program);
 }
 
 void Shader::Dispath(GLuint x, GLuint y, GLuint z)
 {
-    glUseProgram(m_program);
+    glUseProgram(program);
     glDispatchCompute(x, y, z);
     glMemoryBarrier(GL_ALL_BARRIER_BITS);
 }
 
 void Shader::Use()
 {
-    glUseProgram(m_program);
+    glUseProgram(program);
 }
 
 Shader::~Shader()
 {
-    glDetachShader(m_program, m_vertexShader);
-    glDetachShader(m_program, m_fragmentShader);
-    glDetachShader(m_program, m_computeShader);
+    glDetachShader(program, m_vertexShader);
+    glDetachShader(program, m_fragmentShader);
+    glDetachShader(program, m_computeShader);
     glDeleteShader(m_vertexShader);
     glDeleteShader(m_fragmentShader);
     glDeleteShader(m_computeShader);
-    glDeleteProgram(m_program);
+    glDeleteProgram(program);
 }

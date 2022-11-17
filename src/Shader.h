@@ -5,12 +5,10 @@
 class Shader
 {
 public:
+	GLuint program;
+
 	Shader(const std::string& vsFilePath, const std::string& fsFilePath);	// Contructor for render shaders
 	Shader(const std::string& csFilePath);									// Contructor for compute shader
-
-	void BindAgentUniforms();
-	void BindDiffuseUniforms();
-	void BindDecayUniforms();
 
 	void Dispath(GLuint x, GLuint y, GLuint z);
 	void Use();
@@ -18,7 +16,6 @@ public:
 	~Shader();
 
 private:
-	GLuint m_program;
 	GLuint m_vertexShader;
 	GLuint m_fragmentShader;
 	GLuint m_computeShader;
