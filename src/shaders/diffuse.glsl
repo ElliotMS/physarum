@@ -18,10 +18,10 @@ void main()
     for (int i = -diffuseSize; i <= diffuseSize; i++) {     // Loop X offsets
         for (int j = -diffuseSize; j <= diffuseSize; j++) { // Loop Y offsets
             ivec2 currentPos = pixelPos + ivec2(i, j);
-            if (!(currentPos.x < 0 || currentPos.y < 0 || currentPos.x >= width || currentPos.y >= height)) { // Out of bounds check
+            //if (!(currentPos.x < 0 || currentPos.y < 0 || currentPos.x >= width || currentPos.y >= height)) { // Out of bounds check
                 sum += imageLoad(trailMap, currentPos);
                 count += 1;
-            }       
+            //}       
         }
     }
     

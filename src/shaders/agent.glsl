@@ -15,6 +15,7 @@ uniform int sensorSize;
 uniform float trailColorR;
 uniform float trailColorG;
 uniform float trailColorB;
+uniform float killChance;
 
 const float PI = 3.14159265359;
 
@@ -22,6 +23,7 @@ struct Agent {
     float x;
     float y;
     float angle;
+    bool status;
 };
 
 layout(std430, binding = 1) buffer Agents {
@@ -62,7 +64,7 @@ void Turn(int ID) {
     } 
     else if (weightFront < weightRight && weightFront < weightLeft) {
         //Turn randomly left or right
-        if (random(vec2(agent.x + ID, agent.y)) > 0.5) {
+        if (random(vec2(agent.x + ID, agent.y)) > 0) {
             agents[ID].angle -= rotationAngle;
         } else {
             agents[ID].angle += rotationAngle;
@@ -84,24 +86,33 @@ void Move(int ID) {
     vec2 direction = vec2(cos(agent.angle), sin(agent.angle));
     vec2 newPos = vec2(agent.x, agent.y) + direction * stepSize;
 
-    if (newPos.x < 0 || newPos.x > width || newPos.y < 0 || newPos.y > height) // Out of bounds check
+    if (newPos.x < 0 || newPos.x >= width || newPos.y < 0 || newPos.y >= height) // Out of bounds check
     {
         newPos.x = agent.x - 0.01;
         newPos.y = agent.y - 0.01;
-        agents[ID].angle = random(vec2(agent.x + ID, agent.y)) * (2 * PI);
+        agents[ID].angle = (random(vec2(agent.x + ID, agent.y))+1) * PI;
     }
 
-    vec4 trailColor = vec4(trailColorR, trailColorG, trailColorB, 1.0);
+    vec4 trailColor = vec4(trailColorR, trailColorG, trailColorB, 0.0);
     imageStore(trailMap, ivec2(agent.x, agent.y), trailColor);
 
     agents[ID].x = newPos.x;
     agents[ID].y = newPos.y;
 }
 
+void Kill(int ID) {
+    Agent agent = agents[ID];
+    float rand = random(vec2(agent.x + ID, agent.y));
+    if(rand > 1-killChance*2) {
+        agents[ID].status = false;
+    }
+}
+
 void main()
 {
     int ID = int(gl_GlobalInvocationID.x);
-    if (ID >= agentCount) return;
+    if (ID >= agentCount || !agents[ID].status) return;
+    Kill(ID);
     Turn(ID);
     Move(ID);
 }

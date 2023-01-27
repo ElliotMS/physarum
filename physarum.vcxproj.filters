@@ -43,6 +43,12 @@
     <ClInclude Include="src\debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="util\stb\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="util\inih\INIReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\vertex.glsl" />
@@ -50,6 +56,7 @@
     <None Include="src\shaders\agent.glsl" />
     <None Include="src\shaders\decay.glsl" />
     <None Include="src\shaders\diffuse.glsl" />
+    <None Include="src\shaders\stimuli.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="todo.txt" />

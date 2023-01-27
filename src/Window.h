@@ -6,9 +6,12 @@
 class Window
 {
 public:
+    bool paused = false;
+
     Window(const char* title);
     
     void Update();
+    void TogglePause();
     bool ShouldClose();
 
 private:

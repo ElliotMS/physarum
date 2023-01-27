@@ -17,6 +17,12 @@ void config::LoadSettings(const std::string filePath)
     }
 }
 
+void config::BindRenderUniforms(GLuint program)
+{
+    glProgramUniform1i(program, glGetUniformLocation(program, "trailMap"), 0);
+    glProgramUniform1i(program, glGetUniformLocation(program, "stimuliMap"), 1);
+}
+
 void config::BindAgentUniforms(GLuint program)
 {
     glProgramUniform1i(program, glGetUniformLocation(program, "width"), TEXTURE_WIDTH);
@@ -30,6 +36,7 @@ void config::BindAgentUniforms(GLuint program)
     glProgramUniform1f(program, glGetUniformLocation(program, "trailColorR"), TRAIL_COLOR_R);
     glProgramUniform1f(program, glGetUniformLocation(program, "trailColorG"), TRAIL_COLOR_G);
     glProgramUniform1f(program, glGetUniformLocation(program, "trailColorB"), TRAIL_COLOR_B);
+    glProgramUniform1f(program, glGetUniformLocation(program, "killChance"), KILL_CHANCE);
 }
 
 void config::BindDiffuseUniforms(GLuint program)
@@ -46,4 +53,11 @@ void config::BindDecayUniforms(GLuint program)
     glProgramUniform1i(program, glGetUniformLocation(program, "decaySpeedR"), DECAY_SPEED_R);
     glProgramUniform1i(program, glGetUniformLocation(program, "decaySpeedG"), DECAY_SPEED_G);
     glProgramUniform1i(program, glGetUniformLocation(program, "decaySpeedB"), DECAY_SPEED_B);
+}
+
+void config::BindStimuliUniforms(GLuint program)
+{
+    glProgramUniform1i(program, glGetUniformLocation(program, "width"), TEXTURE_WIDTH);
+    glProgramUniform1i(program, glGetUniformLocation(program, "height"), TEXTURE_HEIGHT);
+    glProgramUniform1f(program, glGetUniformLocation(program, "stimWeight"), STIM_WEIGHT);
 }

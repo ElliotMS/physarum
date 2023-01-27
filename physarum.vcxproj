@@ -22,7 +22,7 @@
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
     <ProjectGuid>{71901097-a40c-4a79-a41c-34c0cbe8dae4}</ProjectGuid>
-    <RootNamespace>Testing</RootNamespace>
+    <RootNamespace>physarum</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>physarum</ProjectName>
   </PropertyGroup>
@@ -156,12 +156,15 @@
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\config.h" />
     <ClInclude Include="src\trail_map.h" />
+    <ClInclude Include="util\inih\INIReader.h" />
+    <ClInclude Include="util\stb\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\agent.glsl" />
     <None Include="src\shaders\diffuse.glsl" />
     <None Include="src\shaders\fragment.glsl" />
     <None Include="src\shaders\decay.glsl" />
+    <None Include="src\shaders\stimuli.glsl" />
     <None Include="src\shaders\vertex.glsl" />
   </ItemGroup>
   <ItemGroup>

@@ -34,11 +34,14 @@ int main(void)
     Shader agentShader("../src/shaders/agent.glsl");
     Shader diffuseShader("../src/shaders/diffuse.glsl");
     Shader decayShader("../src/shaders/decay.glsl");
+    Shader stimuliShader("../src/shaders/stimuli.glsl");
     
     // Bind shader uniform variables
+    config::BindRenderUniforms(renderShader.program);
     config::BindAgentUniforms(agentShader.program);
     config::BindDiffuseUniforms(diffuseShader.program);
     config::BindDecayUniforms(decayShader.program);
+    config::BindStimuliUniforms(stimuliShader.program);
     
     trail_map::Init(); // Creates full screen quad & trailmap texture
     agent_buffer::Init(); // Intialize and bind agent buffer 
@@ -46,10 +49,13 @@ int main(void)
     // Main loop
     while (!window.ShouldClose())
     {
-        diffuseShader.Dispath(TEXTURE_WIDTH, TEXTURE_HEIGHT, 1);
-        agentShader.Dispath(AGENT_COUNT / 128, 1, 1);
-        decayShader.Dispath(TEXTURE_WIDTH, TEXTURE_HEIGHT, 1);
-        renderShader.Use();
+        if(!window.paused) {
+            stimuliShader.Dispath(TEXTURE_WIDTH, TEXTURE_HEIGHT, 1);
+            diffuseShader.Dispath(TEXTURE_WIDTH, TEXTURE_HEIGHT, 1);
+            agentShader.Dispath(AGENT_COUNT / 128, 1, 1);
+            decayShader.Dispath(TEXTURE_WIDTH, TEXTURE_HEIGHT, 1);
+            renderShader.Use();
+        }
         window.Update();
     }
     
