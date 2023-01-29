@@ -9,7 +9,7 @@
 #define AGENT_COUNT    config::settings.GetInteger("AGENT", "AGENT_COUNT", 50000)
 #define SENSOR_ANGLE   config::settings.GetInteger("AGENT", "SENSOR_ANGLE", 45.0) * (3.14159265359 / 180)
 #define ROTATION_ANGLE config::settings.GetFloat("AGENT", "ROTATION_ANGLE", 45.0) * (3.14159265359 / 180)
-#define SENSOR_OFFSET  config::settings.GetFloat("AGENT", "SENSOR_OFFSET", 10)
+#define SENSOR_OFFSET  config::settings.GetInteger("AGENT", "SENSOR_OFFSET", 10)
 #define SENSOR_SIZE    config::settings.GetInteger("AGENT",	"SENSOR_SIZE", 1)
 #define STEP_SIZE      config::settings.GetInteger("AGENT", "STEP_SIZE", 1)
 #define SPAWN_MODE     config::settings.GetInteger("AGENT", "SPAWN_MODE", 1)
@@ -37,4 +37,6 @@ namespace config
 	void BindDiffuseUniforms(GLuint program);
 	void BindDecayUniforms(GLuint program);
 	void BindStimuliUniforms(GLuint program);
+
+	void Update();
 };

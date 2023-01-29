@@ -16,6 +16,7 @@ uniform float trailColorR;
 uniform float trailColorG;
 uniform float trailColorB;
 uniform float killChance;
+uniform uint time;
 
 const float PI = 3.14159265359;
 
@@ -23,22 +24,34 @@ struct Agent {
     float x;
     float y;
     float angle;
-    bool status;
+    bool alive;
 };
 
 layout(std430, binding = 1) buffer Agents {
     Agent agents[];
 };
 
-float random(vec2 co) {
-    return fract(sin(dot(co, vec2(12.9898, 78.233))) * 43758.5453);
+uint Hash(uint s)
+{
+    s ^= 2747636419u;
+    s *= 2654435769u;
+    s ^= s >> 16;
+    s *= 2654435769u;
+    s ^= s >> 16;
+    s *= 2654435769u;
+    return s;
+}
+
+float Random(uint s)
+{
+    return Hash(s) / 4294967295.0;
 }
 
 float Sense(Agent agent, float sensorAngle) {
     float localSensorAngle = agent.angle + sensorAngle; 
     vec2 sensorDir = vec2(cos(localSensorAngle), sin(localSensorAngle));
     ivec2 sensorPos = ivec2(agent.x + sensorDir.x * sensorOffset, agent.y + sensorDir.y * sensorOffset);
-    
+
     vec4 sum = vec4(0.0);
     for (int i = -sensorSize; i <= sensorSize; i++) { // Loop X offsets
         for (int j = -sensorSize; j <= sensorSize; j++) { // Loop Y offsets
@@ -64,7 +77,7 @@ void Turn(int ID) {
     } 
     else if (weightFront < weightRight && weightFront < weightLeft) {
         //Turn randomly left or right
-        if (random(vec2(agent.x + ID, agent.y)) > 0) {
+        if (Random(uint(agent.y * width + agent.x + Hash(uint(ID + time * 100000)))) > 0.5) {
             agents[ID].angle -= rotationAngle;
         } else {
             agents[ID].angle += rotationAngle;
@@ -86,33 +99,30 @@ void Move(int ID) {
     vec2 direction = vec2(cos(agent.angle), sin(agent.angle));
     vec2 newPos = vec2(agent.x, agent.y) + direction * stepSize;
 
-    if (newPos.x < 0 || newPos.x >= width || newPos.y < 0 || newPos.y >= height) // Out of bounds check
-    {
-        newPos.x = agent.x - 0.01;
-        newPos.y = agent.y - 0.01;
-        agents[ID].angle = (random(vec2(agent.x + ID, agent.y))+1) * PI;
+    if (newPos.x < 0 || newPos.x >= width || newPos.y < 0 || newPos.y >= height) {
+        agents[ID].angle = Random(uint(agent.y * width + agent.x + Hash(uint(ID + time * 100000)))) * PI * 2;
+    } else {
+        vec4 trailColor = vec4(trailColorR, trailColorG, trailColorB, 1.0);
+        imageStore(trailMap, ivec2(agent.x, agent.y), trailColor);
+        agents[ID].x = newPos.x;
+        agents[ID].y = newPos.y;
     }
-
-    vec4 trailColor = vec4(trailColorR, trailColorG, trailColorB, 0.0);
-    imageStore(trailMap, ivec2(agent.x, agent.y), trailColor);
-
-    agents[ID].x = newPos.x;
-    agents[ID].y = newPos.y;
 }
 
 void Kill(int ID) {
     Agent agent = agents[ID];
-    float rand = random(vec2(agent.x + ID, agent.y));
-    if(rand > 1-killChance*2) {
-        agents[ID].status = false;
+    float rand = Random(uint(agent.y * width + agent.x + Hash(uint(ID + time * 100000))));
+    if(rand > 1-killChance) {
+        agents[ID].alive = false;
     }
 }
 
 void main()
 {
     int ID = int(gl_GlobalInvocationID.x);
-    if (ID >= agentCount || !agents[ID].status) return;
+    if (ID >= agentCount) return;
     Kill(ID);
+    if (ID >= agentCount || !agents[ID].alive) return;
     Turn(ID);
     Move(ID);
 }

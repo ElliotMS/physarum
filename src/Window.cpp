@@ -15,7 +15,6 @@ static void KeyCallback(GLFWwindow* p_window, int key, int scancode, int action,
             glfwSetWindowShouldClose(p_window, 1);
             break;
         case GLFW_KEY_SPACE:
-            //Window::paused = true;
             Window* window= reinterpret_cast<Window*>(glfwGetWindowUserPointer(p_window));
             if (window) window->TogglePause();
             break;

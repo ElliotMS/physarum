@@ -43,9 +43,6 @@
     <ClInclude Include="src\debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="util\stb\stb_image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="util\inih\INIReader.h">
       <Filter>Header Files</Filter>
     </ClInclude>

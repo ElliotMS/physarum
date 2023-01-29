@@ -1,6 +1,4 @@
-4. True random number generation and better hash function in shaders (possible with time seed)
-5. Represent agent with data map and implent block of movement behavior 
-5  Replace Agent buffer array with vector or (linked) list
 6. Clean/restructure/comment code
 7  Controlled simulation speed
-8. Toggle stimulus view and trailmap view
+8. Toggle stimulus view, trailmap view
+9. Restart button

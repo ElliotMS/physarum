@@ -48,7 +48,7 @@ namespace trail_map
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-        // Texture 
+        // Texture 1
         glActiveTexture(GL_TEXTURE0);
         glGenTextures(1, &texture);
         glBindTexture(GL_TEXTURE_2D, texture);

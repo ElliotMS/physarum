@@ -1,12 +1,22 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include <chrono>
 #include "Window.h"
 #include "Shader.h"
 #include "config.h"
 #include "debug.h"
 #include "agent_buffer.h"
 #include "trail_map.h"
+
+unsigned int GetTime() 
+{
+    using namespace std::chrono;
+    milliseconds ms = duration_cast<milliseconds>(
+        system_clock::now().time_since_epoch()
+    );
+    return ms.count();
+}
 
 int main(void)
 {
@@ -44,12 +54,18 @@ int main(void)
     config::BindStimuliUniforms(stimuliShader.program);
     
     trail_map::Init(); // Creates full screen quad & trailmap texture
-    agent_buffer::Init(); // Intialize and bind agent buffer 
+    //agent_buffer::Init(); // Intialize and bind agent buffer 
+    agent_buffer::Init();
+
+    unsigned int time;
 
     // Main loop
     while (!window.ShouldClose())
     {
         if(!window.paused) {
+            time = GetTime();
+            glProgramUniform1ui(agentShader.program, glGetUniformLocation(agentShader.program, "time"), time);
+            
             stimuliShader.Dispath(TEXTURE_WIDTH, TEXTURE_HEIGHT, 1);
             diffuseShader.Dispath(TEXTURE_WIDTH, TEXTURE_HEIGHT, 1);
             agentShader.Dispath(AGENT_COUNT / 128, 1, 1);

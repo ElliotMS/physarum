@@ -157,7 +157,6 @@
     <ClInclude Include="src\config.h" />
     <ClInclude Include="src\trail_map.h" />
     <ClInclude Include="util\inih\INIReader.h" />
-    <ClInclude Include="util\stb\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\shaders\agent.glsl" />
