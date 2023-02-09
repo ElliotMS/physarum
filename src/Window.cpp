@@ -15,7 +15,7 @@ static void KeyCallback(GLFWwindow* p_window, int key, int scancode, int action,
             glfwSetWindowShouldClose(p_window, 1);
             break;
         case GLFW_KEY_SPACE:
-            Window* window= reinterpret_cast<Window*>(glfwGetWindowUserPointer(p_window));
+            Window* window = reinterpret_cast<Window*>(glfwGetWindowUserPointer(p_window));
             if (window) window->TogglePause();
             break;
         }
@@ -82,8 +82,6 @@ Window::Window(const char* title)
     glfwSetMouseButtonCallback(p_window, MouseButtonCallback);
     //glfwSetInputMode(p_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
     glfwSwapInterval(1);
-
-    //testing
     glfwSetWindowUserPointer(p_window, reinterpret_cast<void*>(this));
 }
 

@@ -152,10 +152,12 @@
   <ItemGroup>
     <ClInclude Include="src\agent_buffer.h" />
     <ClInclude Include="src\debug.h" />
+    <ClInclude Include="src\quad.h" />
+    <ClInclude Include="src\texture.h" />
+    <ClInclude Include="src\time_ms.h" />
     <ClInclude Include="src\Window.h" />
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\config.h" />
-    <ClInclude Include="src\trail_map.h" />
     <ClInclude Include="util\inih\INIReader.h" />
   </ItemGroup>
   <ItemGroup>
@@ -163,7 +165,7 @@
     <None Include="src\shaders\diffuse.glsl" />
     <None Include="src\shaders\fragment.glsl" />
     <None Include="src\shaders\decay.glsl" />
-    <None Include="src\shaders\stimuli.glsl" />
+    <None Include="src\shaders\stimulus.glsl" />
     <None Include="src\shaders\vertex.glsl" />
   </ItemGroup>
   <ItemGroup>

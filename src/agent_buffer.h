@@ -15,11 +15,11 @@ namespace agent_buffer
 		bool alive = true;
 	};
 
-	enum SpawnModes { CIRCLE, RANDOM, MIDDLE };
+	enum SpawnModes { CIRCLE, RANDOM };
 
 	std::random_device rd;
 	std::mt19937 gen(rd());
-	std::uniform_real_distribution<> dis(0.0, 1.0);
+	std::uniform_real_distribution<> rand(0.0, 1.0);
 
 	void Init()
 	{
@@ -33,8 +33,8 @@ namespace agent_buffer
 		case CIRCLE:
 			for (int i = 0; i < AGENT_COUNT; i++)
 			{
-				float a = dis(gen) * (2 * std::_Pi);
-				float r = dis(gen) * midPointY;
+				float a = rand(gen) * (2 * std::_Pi);
+				float r = rand(gen) * midPointY;
 				agent.x = cos(a) * r + midPointX;
 				agent.y = sin(a) * r + midPointY;
 				agent.angle = atan2(midPointY - agent.y, midPointX - agent.x); // Angle facing middle
@@ -44,9 +44,9 @@ namespace agent_buffer
 		case RANDOM:
 			for (int i = 0; i < AGENT_COUNT; i++)
 			{
-				agent.x = dis(gen) * TEXTURE_WIDTH;
-				agent.y = dis(gen) * TEXTURE_HEIGHT;
-				agent.angle = dis(gen) * (2 * std::_Pi);
+				agent.x = rand(gen) * TEXTURE_WIDTH;
+				agent.y = rand(gen) * TEXTURE_HEIGHT;
+				agent.angle = rand(gen) * (2 * std::_Pi);
 				agentData[i] = agent;
 			}
 			break;

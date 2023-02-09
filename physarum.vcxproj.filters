@@ -37,13 +37,19 @@
     <ClInclude Include="src\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\trail_map.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="util\inih\INIReader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\quad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\time_ms.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,7 +59,7 @@
     <None Include="src\shaders\agent.glsl" />
     <None Include="src\shaders\decay.glsl" />
     <None Include="src\shaders\diffuse.glsl" />
-    <None Include="src\shaders\stimuli.glsl" />
+    <None Include="src\shaders\stimulus.glsl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="todo.txt" />

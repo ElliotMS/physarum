@@ -1,4 +1,0 @@
-6. Clean/restructure/comment code
-7  Controlled simulation speed
-8. Toggle stimulus view, trailmap view
-9. Restart button

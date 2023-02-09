@@ -6,17 +6,10 @@
 #include "Shader.h"
 #include "config.h"
 #include "debug.h"
+#include "texture.h"
+#include "quad.h"
+#include "time_ms.h"
 #include "agent_buffer.h"
-#include "trail_map.h"
-
-unsigned int GetTime() 
-{
-    using namespace std::chrono;
-    milliseconds ms = duration_cast<milliseconds>(
-        system_clock::now().time_since_epoch()
-    );
-    return ms.count();
-}
 
 int main(void)
 {
@@ -44,28 +37,26 @@ int main(void)
     Shader agentShader("../src/shaders/agent.glsl");
     Shader diffuseShader("../src/shaders/diffuse.glsl");
     Shader decayShader("../src/shaders/decay.glsl");
-    Shader stimuliShader("../src/shaders/stimuli.glsl");
+    Shader stimuliShader("../src/shaders/stimulus.glsl");
     
     // Bind shader uniform variables
     config::BindRenderUniforms(renderShader.program);
     config::BindAgentUniforms(agentShader.program);
     config::BindDiffuseUniforms(diffuseShader.program);
     config::BindDecayUniforms(decayShader.program);
-    config::BindStimuliUniforms(stimuliShader.program);
+    config::BindStimulusUniforms(stimuliShader.program);
     
-    trail_map::Init(); // Creates full screen quad & trailmap texture
-    //agent_buffer::Init(); // Intialize and bind agent buffer 
-    agent_buffer::Init();
-
-    unsigned int time;
+    // Initialize fullscreen quad, trail/stimulus-textures and agent buffer
+    quad::Init();
+    texture::InitTrailMap(); 
+    texture::InitStimulusMap(); 
+    agent_buffer::Init(); 
 
     // Main loop
     while (!window.ShouldClose())
     {
         if(!window.paused) {
-            time = GetTime();
-            glProgramUniform1ui(agentShader.program, glGetUniformLocation(agentShader.program, "time"), time);
-            
+            glProgramUniform1ui(agentShader.program, glGetUniformLocation(agentShader.program, "time"), time_ms::Get());
             stimuliShader.Dispath(TEXTURE_WIDTH, TEXTURE_HEIGHT, 1);
             diffuseShader.Dispath(TEXTURE_WIDTH, TEXTURE_HEIGHT, 1);
             agentShader.Dispath(AGENT_COUNT / 128, 1, 1);

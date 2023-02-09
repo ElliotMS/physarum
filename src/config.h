@@ -36,7 +36,5 @@ namespace config
 	void BindAgentUniforms(GLuint program);
 	void BindDiffuseUniforms(GLuint program);
 	void BindDecayUniforms(GLuint program);
-	void BindStimuliUniforms(GLuint program);
-
-	void Update();
+	void BindStimulusUniforms(GLuint program);
 };

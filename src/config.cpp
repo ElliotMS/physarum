@@ -20,7 +20,7 @@ void config::LoadSettings(const std::string filePath)
 void config::BindRenderUniforms(GLuint program)
 {
     glProgramUniform1i(program, glGetUniformLocation(program, "trailMap"), 0);
-    glProgramUniform1i(program, glGetUniformLocation(program, "stimuliMap"), 1);
+    glProgramUniform1i(program, glGetUniformLocation(program, "stimulusMap"), 1);
 }
 
 void config::BindAgentUniforms(GLuint program)
@@ -55,7 +55,7 @@ void config::BindDecayUniforms(GLuint program)
     glProgramUniform1i(program, glGetUniformLocation(program, "decaySpeedB"), DECAY_SPEED_B);
 }
 
-void config::BindStimuliUniforms(GLuint program)
+void config::BindStimulusUniforms(GLuint program)
 {
     glProgramUniform1i(program, glGetUniformLocation(program, "width"), TEXTURE_WIDTH);
     glProgramUniform1i(program, glGetUniformLocation(program, "height"), TEXTURE_HEIGHT);
