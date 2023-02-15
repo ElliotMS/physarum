@@ -15,7 +15,7 @@ namespace agent_buffer
 		bool alive = true;
 	};
 
-	enum SpawnModes { CIRCLE, RANDOM };
+	enum SpawnModes { CIRCLE, RECTANGLE };
 
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -34,14 +34,17 @@ namespace agent_buffer
 			for (int i = 0; i < AGENT_COUNT; i++)
 			{
 				float a = rand(gen) * (2 * std::_Pi);
-				float r = rand(gen) * midPointY;
+				float r = rand(gen) + rand(gen); //
+				if (r >= 1)						 // Unifrom -
+					r = 2 - r;					 //	distribution
+				r *= midPointY;					 //
 				agent.x = cos(a) * r + midPointX;
 				agent.y = sin(a) * r + midPointY;
 				agent.angle = atan2(midPointY - agent.y, midPointX - agent.x); // Angle facing middle
 				agentData[i] = agent;
 			}
 			break;
-		case RANDOM:
+		case RECTANGLE:
 			for (int i = 0; i < AGENT_COUNT; i++)
 			{
 				agent.x = rand(gen) * TEXTURE_WIDTH;

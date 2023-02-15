@@ -61,7 +61,4 @@
     <None Include="src\shaders\diffuse.glsl" />
     <None Include="src\shaders\stimulus.glsl" />
   </ItemGroup>
-  <ItemGroup>
-    <Text Include="todo.txt" />
-  </ItemGroup>
 </Project>
