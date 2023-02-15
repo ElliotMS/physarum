@@ -6,9 +6,9 @@ layout(rgba32f, binding = 0) uniform image2D trailMap;
 
 uniform int width;
 uniform int height;
-uniform int decaySpeedR;
-uniform int decaySpeedG;
-uniform int decaySpeedB;
+uniform float decaySpeedR;
+uniform float decaySpeedG;
+uniform float decaySpeedB;
 
 void main()
 {
@@ -17,7 +17,7 @@ void main()
     vec4 currentValue = imageLoad(trailMap, pixelPos);
     vec4 decayedValue = max(
         vec4(0, 0, 0, 0.0),
-        currentValue - vec4(0.001 * decaySpeedR, 0.001 * decaySpeedG, 0.001 * decaySpeedB, 0.0)
+        currentValue - vec4(decaySpeedR, decaySpeedG, decaySpeedB, 0.0)
     );
         
     imageStore(trailMap, pixelPos, decayedValue);

@@ -50,9 +50,9 @@ void config::BindDecayUniforms(GLuint program)
 {
     glProgramUniform1i(program, glGetUniformLocation(program, "width"), TEXTURE_WIDTH);
     glProgramUniform1i(program, glGetUniformLocation(program, "height"), TEXTURE_HEIGHT);
-    glProgramUniform1i(program, glGetUniformLocation(program, "decaySpeedR"), DECAY_SPEED_R);
-    glProgramUniform1i(program, glGetUniformLocation(program, "decaySpeedG"), DECAY_SPEED_G);
-    glProgramUniform1i(program, glGetUniformLocation(program, "decaySpeedB"), DECAY_SPEED_B);
+    glProgramUniform1f(program, glGetUniformLocation(program, "decaySpeedR"), DECAY_SPEED_R);
+    glProgramUniform1f(program, glGetUniformLocation(program, "decaySpeedG"), DECAY_SPEED_G);
+    glProgramUniform1f(program, glGetUniformLocation(program, "decaySpeedB"), DECAY_SPEED_B);
 }
 
 void config::BindStimulusUniforms(GLuint program)

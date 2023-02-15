@@ -61,7 +61,7 @@ Window::Window(const char* title)
 {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
+    //glfwWindowHint(GLFW_DECORATED, GLFW_FALSE);
 
     if (FULLSCREEN)
         p_window = glfwCreateWindow(DISPLAY_WIDTH, DISPLAY_HEIGHT, title, glfwGetPrimaryMonitor(), NULL);
