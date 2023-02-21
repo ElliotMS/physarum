@@ -6,15 +6,15 @@ Inpired by [Sebastian Lague](https://github.com/SebLague/Slime-Simulation) and [
 ## Configuration parameters
 As given in [config/settings.ini](config/settings.ini).
 
-| Paramter | Description | Default value |
-| -------- | ----------- | ------------- |
+| Parameter | Description | Default value |
+| --------- | ----------- | ------------- |
 | FULLSCREEN      | Fullsceen mode                                          | FALSE
 | DISPLAY_WIDTH   | Width of window                                         | 1000
 | DISPLAY_HEIGHT  | Height of window                                        | 1000
 | AGENT_COUNT     | Number of agents spawned                                | 50000
 | SENSOR_ANGLE    | Angle at which agents sense stimuli                     | 45
 | ROTATION_ANGLE  | Angle at which agents rotate                            | 45
-| SENSOR_OFFSET   | Distance to where agents sense stimuli      | 10
+| SENSOR_OFFSET   | Distance to where agents sense stimuli                  | 10
 | SENSOR_SIZE     | Size of sensor                                          | 1
 | STEP_SIZE       | Distance agents move at each simulation step            | 1
 | SPAWN_MODE      | Agents spawn in circle(0) or rectangle(1)               | 0
