@@ -1,10 +1,10 @@
 # Physarum slime simulation
 A GPU based simulation of the [Physarum polycephalum](https://en.wikipedia.org/wiki/Physarum_polycephalum) slime mold written in C++ and GLSL using the OpenGL graphics API. 
 
-Inpired by [Sebastian Lague](https://github.com/SebLague/Slime-Simulation) and [Sage Jenson](https://cargocollective.com/sagejenson/physarum), based on a model given in a [2010 paper by Jeff Jones](https://uwe-repository.worktribe.com/output/980579).
+Inpired by [Sebastian Lague](https://github.com/SebLague/Slime-Simulation) and [Sage Jenson](https://cargocollective.com/sagejenson/physarum), based on a model proposed in a [2010 paper by Jeff Jones](https://uwe-repository.worktribe.com/output/980579).
 
 ## Configuration parameters
-As given in [config/settings.ini](config/settings.ini).
+As defined in [config/settings.ini](config/settings.ini).
 
 | Parameter | Description | Default value |
 | --------- | ----------- | ------------- |
